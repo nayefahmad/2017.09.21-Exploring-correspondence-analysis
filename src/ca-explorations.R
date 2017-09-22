@@ -25,6 +25,34 @@ plot(ca(smoke))
 plot(ca(smoke), map="rowprincipal")
 plot(ca(smoke), map="colprincipal")
 
+# profiles of rows: 
+smoke.rowsum <- apply(smoke, 1, sum)
+smoke.colsum <- apply(smoke, 2, sum)
+smoke.sum <- sum(smoke)
+
+smoke.exp <- smoke.rowsum %o% smoke.colsum/smoke.sum
+# this gives the smoke of expected profile coordinates 
+
+chi2 <- sum((smoke-smoke.exp)^2/smoke.exp)  # chi2 statistic
+inertia <- chi2/smoke.sum
+
+smoke.profiles <- smoke/smoke.rowsum  # actual profiles for rows 
+smoke.colmass <- smoke.colsum/smoke.sum  # column masses aka avg row profile
+
+
+#**************************
+# save data to csv: 
+write.csv(smoke, 
+          file="H:/VCH files - Nayef/2017.09.21 Exploring correspondence analysis/results/output from src/smoke-data.csv")
+
+write.csv(smoke.profiles,
+          file="H:/VCH files - Nayef/2017.09.21 Exploring correspondence analysis/results/output from src/smoke-profile.csv")
+
+#**************************
+
+
+
+
 
 # ********************************
 # Example 2: Calculating distances between profiles  ----------
@@ -76,6 +104,7 @@ inertia <- chi2/readership.sum
 
 readership.profiles <- readership/readership.rowsum  # actual profiles for rows 
 readership.colmass <- readership.colsum/readership.sum  # column masses aka avg row profile
+
 
 #*****************************************
 # save data to csv: 
