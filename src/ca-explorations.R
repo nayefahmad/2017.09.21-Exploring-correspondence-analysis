@@ -15,13 +15,15 @@ library("ggrepel")
 # add rownames as col for plotting 
 
 # **************
-
+setwd("H:/VCH files - Nayef/2017.09.21 Exploring correspondence analysis/results/output from src")
 
 
 # example of CA: -------
 smoke  # dataset
 ca(smoke)
 plot(ca(smoke))
+# dev.copy(jpeg, "smoke_CA.jpeg"); dev.off()
+
 plot(ca(smoke), map="rowprincipal")
 plot(ca(smoke), map="colprincipal")
 
