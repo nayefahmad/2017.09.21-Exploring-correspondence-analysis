@@ -29,9 +29,9 @@ plot(ca(smoke), map="colprincipal")
 # ********************************
 # Example 2: Calculating distances between profiles  ----------
 # ********************************
-readership <- data.frame(C1=c(5,18,19,12,3), 
-                    C2=c(7,46,29,40,7), 
-                    C3=c(2,20,39,49,16))
+readership <- data.frame(low=c(5,18,19,12,3), 
+                    med=c(7,46,29,40,7), 
+                    high=c(2,20,39,49,16))
 rownames(readership) <- paste0("E", 1:5)
 
 # str(readership)
@@ -77,6 +77,15 @@ inertia <- chi2/readership.sum
 readership.profiles <- readership/readership.rowsum  # actual profiles for rows 
 readership.colmass <- readership.colsum/readership.sum  # column masses aka avg row profile
 
+#*****************************************
+# save data to csv: 
+write.csv(readership, 
+          file="H:/VCH files - Nayef/2017.09.21 Exploring correspondence analysis/results/output from src/readership-data.csv")
+
+write.csv(readership.profiles,
+          file="H:/VCH files - Nayef/2017.09.21 Exploring correspondence analysis/results/output from src/readership-profile.csv")
+
+#*****************************************
 
 chi.dist.from.centroid <- 
       apply((t(readership.profiles) - 
